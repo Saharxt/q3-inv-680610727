@@ -67,6 +67,11 @@ export const useItemStore = create<ItemState>()(
           date: "2026-10-04",
         },
       ],
+      deleteInventoryItem: (id: string) =>
+        set((state) => ({
+          inventory: state.inventory.filter((item) => item.id !== id),
+        })),
+
       addInventoryItem: (name, quantity, price, category) =>
         set((state) => ({
           inventory: [
@@ -81,7 +86,6 @@ export const useItemStore = create<ItemState>()(
             ...state.inventory,
           ],
         })),
-
     }),
     {
       // Unique key name for the localStorage entry
